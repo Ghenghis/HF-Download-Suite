@@ -14,72 +14,440 @@ from PyQt6.QtCore import Qt
 
 logger = logging.getLogger(__name__)
 
-# Theme color definitions - Enhanced with better contrast
+# Theme color definitions - 15+ themes with variety
 THEMES = {
+    # ============================================
+    # DARK THEMES
+    # ============================================
     "dark": {
-        # Backgrounds - More contrast between levels
-        "bg_primary": "#0d1117",      # Darkest - main background
-        "bg_secondary": "#161b22",    # Cards and panels
-        "bg_tertiary": "#21262d",     # Elevated elements
-        "bg_input": "#0d1117",        # Input fields
-        "bg_hover": "#30363d",        # Hover states
-        "bg_selected": "#1f6feb20",   # Selected items
-        
-        # Text - Clear hierarchy
-        "text_primary": "#e6edf3",    # Main text
-        "text_secondary": "#8b949e",  # Secondary text
-        "text_muted": "#6e7681",      # Muted/disabled text
-        
-        # Accent colors
-        "accent": "#58a6ff",          # Primary accent
-        "accent_hover": "#79c0ff",    # Accent hover
-        "accent_dark": "#1f6feb",     # Darker accent for backgrounds
-        
-        # Status colors
-        "success": "#3fb950",
-        "success_bg": "#23863620",
-        "warning": "#d29922",
-        "warning_bg": "#d2992220",
-        "error": "#f85149",
-        "error_bg": "#f8514920",
-        
-        # Borders - Visible but subtle
-        "border": "#30363d",
-        "border_light": "#21262d",
-        "border_focus": "#58a6ff",
-        
-        # Special
-        "header_bg": "#010409",       # Tab bar, toolbar backgrounds
-        "statusbar_bg": "#010409",    # Status bar
-        "separator": "#30363d",       # Separators
+        "name": "Dark (Default)",
+        "bg_primary": "#1a1a2e",
+        "bg_secondary": "#16213e",
+        "bg_tertiary": "#0f3460",
+        "bg_input": "#1a1a2e",
+        "bg_hover": "#1f4068",
+        "bg_selected": "#e94560",
+        "text_primary": "#eaeaea",
+        "text_secondary": "#b8b8b8",
+        "text_muted": "#666680",
+        "accent": "#e94560",
+        "accent_hover": "#ff6b6b",
+        "accent_dark": "#c73e54",
+        "success": "#00d26a",
+        "success_bg": "#00d26a20",
+        "warning": "#ffc107",
+        "warning_bg": "#ffc10720",
+        "error": "#ff4757",
+        "error_bg": "#ff475720",
+        "border": "#0f3460",
+        "border_light": "#16213e",
+        "border_focus": "#e94560",
+        "header_bg": "#0f0f1a",
+        "statusbar_bg": "#0f0f1a",
+        "separator": "#0f3460",
     },
+    
+    "midnight_blue": {
+        "name": "Midnight Blue",
+        "bg_primary": "#0a1628",
+        "bg_secondary": "#132238",
+        "bg_tertiary": "#1c3148",
+        "bg_input": "#0a1628",
+        "bg_hover": "#254058",
+        "bg_selected": "#3498db40",
+        "text_primary": "#ecf0f1",
+        "text_secondary": "#bdc3c7",
+        "text_muted": "#7f8c8d",
+        "accent": "#3498db",
+        "accent_hover": "#5dade2",
+        "accent_dark": "#2980b9",
+        "success": "#2ecc71",
+        "success_bg": "#2ecc7120",
+        "warning": "#f39c12",
+        "warning_bg": "#f39c1220",
+        "error": "#e74c3c",
+        "error_bg": "#e74c3c20",
+        "border": "#1c3148",
+        "border_light": "#132238",
+        "border_focus": "#3498db",
+        "header_bg": "#061220",
+        "statusbar_bg": "#061220",
+        "separator": "#1c3148",
+    },
+    
+    "dracula": {
+        "name": "Dracula",
+        "bg_primary": "#282a36",
+        "bg_secondary": "#343746",
+        "bg_tertiary": "#44475a",
+        "bg_input": "#282a36",
+        "bg_hover": "#4d5066",
+        "bg_selected": "#bd93f940",
+        "text_primary": "#f8f8f2",
+        "text_secondary": "#c0c0c0",
+        "text_muted": "#6272a4",
+        "accent": "#bd93f9",
+        "accent_hover": "#d4b8ff",
+        "accent_dark": "#9d79d9",
+        "success": "#50fa7b",
+        "success_bg": "#50fa7b20",
+        "warning": "#ffb86c",
+        "warning_bg": "#ffb86c20",
+        "error": "#ff5555",
+        "error_bg": "#ff555520",
+        "border": "#44475a",
+        "border_light": "#343746",
+        "border_focus": "#bd93f9",
+        "header_bg": "#21222c",
+        "statusbar_bg": "#21222c",
+        "separator": "#44475a",
+    },
+    
+    "nord": {
+        "name": "Nord",
+        "bg_primary": "#2e3440",
+        "bg_secondary": "#3b4252",
+        "bg_tertiary": "#434c5e",
+        "bg_input": "#2e3440",
+        "bg_hover": "#4c566a",
+        "bg_selected": "#88c0d040",
+        "text_primary": "#eceff4",
+        "text_secondary": "#d8dee9",
+        "text_muted": "#4c566a",
+        "accent": "#88c0d0",
+        "accent_hover": "#8fbcbb",
+        "accent_dark": "#5e81ac",
+        "success": "#a3be8c",
+        "success_bg": "#a3be8c20",
+        "warning": "#ebcb8b",
+        "warning_bg": "#ebcb8b20",
+        "error": "#bf616a",
+        "error_bg": "#bf616a20",
+        "border": "#434c5e",
+        "border_light": "#3b4252",
+        "border_focus": "#88c0d0",
+        "header_bg": "#242933",
+        "statusbar_bg": "#242933",
+        "separator": "#434c5e",
+    },
+    
+    "monokai": {
+        "name": "Monokai",
+        "bg_primary": "#272822",
+        "bg_secondary": "#3e3d32",
+        "bg_tertiary": "#49483e",
+        "bg_input": "#272822",
+        "bg_hover": "#5b5a4f",
+        "bg_selected": "#a6e22e40",
+        "text_primary": "#f8f8f2",
+        "text_secondary": "#cfcfc2",
+        "text_muted": "#75715e",
+        "accent": "#a6e22e",
+        "accent_hover": "#c4ff50",
+        "accent_dark": "#8bc720",
+        "success": "#a6e22e",
+        "success_bg": "#a6e22e20",
+        "warning": "#e6db74",
+        "warning_bg": "#e6db7420",
+        "error": "#f92672",
+        "error_bg": "#f9267220",
+        "border": "#49483e",
+        "border_light": "#3e3d32",
+        "border_focus": "#a6e22e",
+        "header_bg": "#1e1f1a",
+        "statusbar_bg": "#1e1f1a",
+        "separator": "#49483e",
+    },
+    
+    "cyberpunk": {
+        "name": "Cyberpunk",
+        "bg_primary": "#0d0221",
+        "bg_secondary": "#190535",
+        "bg_tertiary": "#240846",
+        "bg_input": "#0d0221",
+        "bg_hover": "#2f0a57",
+        "bg_selected": "#ff00ff40",
+        "text_primary": "#00ffff",
+        "text_secondary": "#ff00ff",
+        "text_muted": "#666699",
+        "accent": "#ff00ff",
+        "accent_hover": "#ff66ff",
+        "accent_dark": "#cc00cc",
+        "success": "#00ff00",
+        "success_bg": "#00ff0020",
+        "warning": "#ffff00",
+        "warning_bg": "#ffff0020",
+        "error": "#ff0000",
+        "error_bg": "#ff000020",
+        "border": "#ff00ff",
+        "border_light": "#240846",
+        "border_focus": "#00ffff",
+        "header_bg": "#050112",
+        "statusbar_bg": "#050112",
+        "separator": "#ff00ff40",
+    },
+    
+    "forest": {
+        "name": "Forest",
+        "bg_primary": "#1a2f1a",
+        "bg_secondary": "#243824",
+        "bg_tertiary": "#2e4a2e",
+        "bg_input": "#1a2f1a",
+        "bg_hover": "#3a5c3a",
+        "bg_selected": "#4ade8040",
+        "text_primary": "#e8f5e9",
+        "text_secondary": "#a5d6a7",
+        "text_muted": "#5a7a5a",
+        "accent": "#4ade80",
+        "accent_hover": "#86efac",
+        "accent_dark": "#22c55e",
+        "success": "#4ade80",
+        "success_bg": "#4ade8020",
+        "warning": "#fbbf24",
+        "warning_bg": "#fbbf2420",
+        "error": "#ef4444",
+        "error_bg": "#ef444420",
+        "border": "#2e4a2e",
+        "border_light": "#243824",
+        "border_focus": "#4ade80",
+        "header_bg": "#0f1f0f",
+        "statusbar_bg": "#0f1f0f",
+        "separator": "#2e4a2e",
+    },
+    
+    "ocean": {
+        "name": "Ocean",
+        "bg_primary": "#0c1821",
+        "bg_secondary": "#1b2838",
+        "bg_tertiary": "#2a3f54",
+        "bg_input": "#0c1821",
+        "bg_hover": "#3a5068",
+        "bg_selected": "#06b6d440",
+        "text_primary": "#e0f2fe",
+        "text_secondary": "#7dd3fc",
+        "text_muted": "#4a6a7f",
+        "accent": "#06b6d4",
+        "accent_hover": "#22d3ee",
+        "accent_dark": "#0891b2",
+        "success": "#10b981",
+        "success_bg": "#10b98120",
+        "warning": "#f59e0b",
+        "warning_bg": "#f59e0b20",
+        "error": "#f43f5e",
+        "error_bg": "#f43f5e20",
+        "border": "#2a3f54",
+        "border_light": "#1b2838",
+        "border_focus": "#06b6d4",
+        "header_bg": "#061018",
+        "statusbar_bg": "#061018",
+        "separator": "#2a3f54",
+    },
+    
+    # ============================================
+    # LIGHT THEMES
+    # ============================================
     "light": {
+        "name": "Light",
         "bg_primary": "#ffffff",
-        "bg_secondary": "#f6f8fa",
-        "bg_tertiary": "#eaeef2",
+        "bg_secondary": "#f5f5f5",
+        "bg_tertiary": "#e8e8e8",
         "bg_input": "#ffffff",
-        "bg_hover": "#eaeef2",
-        "bg_selected": "#ddf4ff",
-        "text_primary": "#1f2328",
-        "text_secondary": "#656d76",
-        "text_muted": "#8c959f",
-        "accent": "#0969da",
-        "accent_hover": "#0550ae",
-        "accent_dark": "#0969da",
-        "success": "#1a7f37",
-        "success_bg": "#dafbe1",
-        "warning": "#9a6700",
-        "warning_bg": "#fff8c5",
-        "error": "#cf222e",
-        "error_bg": "#ffebe9",
-        "border": "#d0d7de",
-        "border_light": "#eaeef2",
-        "border_focus": "#0969da",
-        "header_bg": "#f6f8fa",
-        "statusbar_bg": "#f6f8fa",
-        "separator": "#d0d7de",
+        "bg_hover": "#e0e0e0",
+        "bg_selected": "#2196f340",
+        "text_primary": "#212121",
+        "text_secondary": "#616161",
+        "text_muted": "#9e9e9e",
+        "accent": "#2196f3",
+        "accent_hover": "#42a5f5",
+        "accent_dark": "#1976d2",
+        "success": "#4caf50",
+        "success_bg": "#4caf5020",
+        "warning": "#ff9800",
+        "warning_bg": "#ff980020",
+        "error": "#f44336",
+        "error_bg": "#f4433620",
+        "border": "#e0e0e0",
+        "border_light": "#eeeeee",
+        "border_focus": "#2196f3",
+        "header_bg": "#fafafa",
+        "statusbar_bg": "#fafafa",
+        "separator": "#e0e0e0",
+    },
+    
+    "cream": {
+        "name": "Cream",
+        "bg_primary": "#faf8f5",
+        "bg_secondary": "#f0ece4",
+        "bg_tertiary": "#e6e0d4",
+        "bg_input": "#faf8f5",
+        "bg_hover": "#dcd4c4",
+        "bg_selected": "#8b572a40",
+        "text_primary": "#3d3d3d",
+        "text_secondary": "#666666",
+        "text_muted": "#999999",
+        "accent": "#8b572a",
+        "accent_hover": "#a66b35",
+        "accent_dark": "#6f4520",
+        "success": "#5a8f5a",
+        "success_bg": "#5a8f5a20",
+        "warning": "#c9a227",
+        "warning_bg": "#c9a22720",
+        "error": "#c94a4a",
+        "error_bg": "#c94a4a20",
+        "border": "#d4cec2",
+        "border_light": "#e6e0d4",
+        "border_focus": "#8b572a",
+        "header_bg": "#f5f2ec",
+        "statusbar_bg": "#f5f2ec",
+        "separator": "#d4cec2",
+    },
+    
+    "solarized_light": {
+        "name": "Solarized Light",
+        "bg_primary": "#fdf6e3",
+        "bg_secondary": "#eee8d5",
+        "bg_tertiary": "#e4ddc8",
+        "bg_input": "#fdf6e3",
+        "bg_hover": "#d9d2bd",
+        "bg_selected": "#268bd240",
+        "text_primary": "#073642",
+        "text_secondary": "#586e75",
+        "text_muted": "#93a1a1",
+        "accent": "#268bd2",
+        "accent_hover": "#3a9ee0",
+        "accent_dark": "#1e6fa8",
+        "success": "#859900",
+        "success_bg": "#85990020",
+        "warning": "#b58900",
+        "warning_bg": "#b5890020",
+        "error": "#dc322f",
+        "error_bg": "#dc322f20",
+        "border": "#d9d2bd",
+        "border_light": "#eee8d5",
+        "border_focus": "#268bd2",
+        "header_bg": "#f7f0dd",
+        "statusbar_bg": "#f7f0dd",
+        "separator": "#d9d2bd",
+    },
+    
+    # ============================================
+    # COLORFUL THEMES
+    # ============================================
+    "purple_haze": {
+        "name": "Purple Haze",
+        "bg_primary": "#1a1625",
+        "bg_secondary": "#2d2640",
+        "bg_tertiary": "#3f3659",
+        "bg_input": "#1a1625",
+        "bg_hover": "#524773",
+        "bg_selected": "#a855f740",
+        "text_primary": "#f3e8ff",
+        "text_secondary": "#c4b5fd",
+        "text_muted": "#7c6a9a",
+        "accent": "#a855f7",
+        "accent_hover": "#c084fc",
+        "accent_dark": "#9333ea",
+        "success": "#22c55e",
+        "success_bg": "#22c55e20",
+        "warning": "#eab308",
+        "warning_bg": "#eab30820",
+        "error": "#ef4444",
+        "error_bg": "#ef444420",
+        "border": "#3f3659",
+        "border_light": "#2d2640",
+        "border_focus": "#a855f7",
+        "header_bg": "#110f18",
+        "statusbar_bg": "#110f18",
+        "separator": "#3f3659",
+    },
+    
+    "sunset": {
+        "name": "Sunset",
+        "bg_primary": "#1f1315",
+        "bg_secondary": "#2d1d20",
+        "bg_tertiary": "#3d282c",
+        "bg_input": "#1f1315",
+        "bg_hover": "#4d3338",
+        "bg_selected": "#f9732640",
+        "text_primary": "#fef2f2",
+        "text_secondary": "#fca5a5",
+        "text_muted": "#8a5a5a",
+        "accent": "#f97316",
+        "accent_hover": "#fb923c",
+        "accent_dark": "#ea580c",
+        "success": "#22c55e",
+        "success_bg": "#22c55e20",
+        "warning": "#facc15",
+        "warning_bg": "#facc1520",
+        "error": "#ef4444",
+        "error_bg": "#ef444420",
+        "border": "#3d282c",
+        "border_light": "#2d1d20",
+        "border_focus": "#f97316",
+        "header_bg": "#150d0f",
+        "statusbar_bg": "#150d0f",
+        "separator": "#3d282c",
+    },
+    
+    "rose_gold": {
+        "name": "Rose Gold",
+        "bg_primary": "#1c1517",
+        "bg_secondary": "#2a2022",
+        "bg_tertiary": "#3a2d30",
+        "bg_input": "#1c1517",
+        "bg_hover": "#4a3a3e",
+        "bg_selected": "#f472b640",
+        "text_primary": "#fdf2f8",
+        "text_secondary": "#f9a8d4",
+        "text_muted": "#8a6070",
+        "accent": "#f472b6",
+        "accent_hover": "#f9a8d4",
+        "accent_dark": "#ec4899",
+        "success": "#34d399",
+        "success_bg": "#34d39920",
+        "warning": "#fbbf24",
+        "warning_bg": "#fbbf2420",
+        "error": "#fb7185",
+        "error_bg": "#fb718520",
+        "border": "#3a2d30",
+        "border_light": "#2a2022",
+        "border_focus": "#f472b6",
+        "header_bg": "#120e10",
+        "statusbar_bg": "#120e10",
+        "separator": "#3a2d30",
+    },
+    
+    "high_contrast": {
+        "name": "High Contrast",
+        "bg_primary": "#000000",
+        "bg_secondary": "#1a1a1a",
+        "bg_tertiary": "#2a2a2a",
+        "bg_input": "#000000",
+        "bg_hover": "#3a3a3a",
+        "bg_selected": "#ffff0040",
+        "text_primary": "#ffffff",
+        "text_secondary": "#cccccc",
+        "text_muted": "#888888",
+        "accent": "#00ff00",
+        "accent_hover": "#33ff33",
+        "accent_dark": "#00cc00",
+        "success": "#00ff00",
+        "success_bg": "#00ff0020",
+        "warning": "#ffff00",
+        "warning_bg": "#ffff0020",
+        "error": "#ff0000",
+        "error_bg": "#ff000020",
+        "border": "#ffffff",
+        "border_light": "#666666",
+        "border_focus": "#00ff00",
+        "header_bg": "#000000",
+        "statusbar_bg": "#000000",
+        "separator": "#ffffff",
     },
 }
+
+# Theme names for UI display
+THEME_NAMES = {key: theme.get("name", key.replace("_", " ").title()) for key, theme in THEMES.items()}
 
 
 def get_stylesheet(theme_name: str = "dark") -> str:
@@ -89,32 +457,30 @@ def get_stylesheet(theme_name: str = "dark") -> str:
     
     return f"""
 /* ============================================
-   GLOBAL STYLES
+   GLOBAL STYLES - Consistent backgrounds
    ============================================ */
-QMainWindow {{
+QMainWindow, QWidget {{
     background-color: {colors['bg_primary']};
-    color: {colors['text_primary']};
-}}
-
-QWidget {{
-    background-color: transparent;
     color: {colors['text_primary']};
     font-family: "Segoe UI", "SF Pro Display", -apple-system, sans-serif;
     font-size: 13px;
 }}
 
+/* Scroll areas need transparent content */
+QScrollArea > QWidget > QWidget {{
+    background-color: {colors['bg_primary']};
+}}
+
 /* ============================================
-   TAB WIDGET - Enhanced contrast
+   TAB WIDGET
    ============================================ */
 QTabWidget::pane {{
-    border: none;
     background-color: {colors['bg_primary']};
-    border-top: 1px solid {colors['border']};
+    border: none;
 }}
 
 QTabBar {{
-    background-color: {colors['header_bg']};
-    qproperty-drawBase: 0;
+    background-color: {colors['bg_secondary']};
 }}
 
 QTabBar::tab {{

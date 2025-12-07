@@ -272,15 +272,34 @@ class SettingsTab(QWidget):
     
     def _create_appearance_section(self) -> QGroupBox:
         """Create appearance settings section."""
+        from ..theme import THEME_NAMES, apply_theme
+        
         group = self._create_section("Appearance", "🎨")
         layout = QFormLayout(group)
         layout.setSpacing(12)
         
-        # Theme
+        # Theme selector with all 15 themes
+        theme_layout = QHBoxLayout()
         self.theme_combo = QComboBox()
-        self.theme_combo.addItems(["Dark", "Light"])
-        self.theme_combo.setCurrentText(self.config.ui.theme.capitalize())
-        layout.addRow("Theme:", self.theme_combo)
+        for key, name in THEME_NAMES.items():
+            self.theme_combo.addItem(name, key)
+        
+        # Set current theme
+        current_theme = self.config.ui.theme
+        idx = self.theme_combo.findData(current_theme)
+        if idx >= 0:
+            self.theme_combo.setCurrentIndex(idx)
+        
+        self.theme_combo.currentIndexChanged.connect(self._on_theme_changed)
+        theme_layout.addWidget(self.theme_combo)
+        
+        # Preview button
+        preview_btn = QPushButton("Apply Now")
+        preview_btn.setFixedWidth(100)
+        preview_btn.clicked.connect(self._apply_theme_now)
+        theme_layout.addWidget(preview_btn)
+        
+        layout.addRow("Theme:", theme_layout)
         
         # Remember window size
         self.remember_size_check = QCheckBox("Remember window size and position")
@@ -293,6 +312,22 @@ class SettingsTab(QWidget):
         layout.addRow(self.notifications_check)
         
         return group
+    
+    def _on_theme_changed(self, index: int) -> None:
+        """Handle theme selection change."""
+        pass  # Theme applied on button click or save
+    
+    def _apply_theme_now(self) -> None:
+        """Apply the selected theme immediately."""
+        from ..theme import apply_theme
+        from PyQt6.QtWidgets import QApplication
+        
+        theme_key = self.theme_combo.currentData()
+        if theme_key:
+            app = QApplication.instance()
+            if app:
+                apply_theme(app, theme_key)
+                self.event_bus.emit(Events.NOTIFICATION, f"Applied theme: {self.theme_combo.currentText()}", "success")
     
     def _load_settings(self) -> None:
         """Load current settings into UI."""
@@ -328,9 +363,12 @@ class SettingsTab(QWidget):
             self.config.network.timeout = self.timeout_spin.value()
             
             # Appearance
-            self.config.ui.theme = self.theme_combo.currentText().lower()
+            self.config.ui.theme = self.theme_combo.currentData() or "dark"
             self.config.ui.remember_window_size = self.remember_size_check.isChecked()
             self.config.ui.show_notifications = self.notifications_check.isChecked()
+            
+            # Apply theme
+            self._apply_theme_now()
             
             # Save
             self.config.save()

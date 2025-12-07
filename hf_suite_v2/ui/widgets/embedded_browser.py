@@ -201,34 +201,44 @@ class EmbeddedBrowser(QWidget):
         """Create the navigation toolbar."""
         toolbar = QFrame()
         toolbar.setObjectName("toolbar")
-        toolbar.setStyleSheet("background-color: #161b22; border-bottom: 1px solid #30363d;")
+        toolbar.setStyleSheet("""
+            QFrame { background-color: #161b22; border-bottom: 1px solid #30363d; }
+            QPushButton { 
+                background-color: #21262d; 
+                border: 1px solid #30363d; 
+                border-radius: 4px;
+                color: #e6edf3;
+                font-weight: bold;
+            }
+            QPushButton:hover { background-color: #30363d; border-color: #58a6ff; }
+        """)
         layout = QHBoxLayout(toolbar)
         layout.setContentsMargins(12, 8, 12, 8)
         layout.setSpacing(8)
         
         # Back button
-        self.back_btn = QPushButton("←")
+        self.back_btn = QPushButton("<")
         self.back_btn.setFixedSize(32, 32)
         self.back_btn.setToolTip("Back")
         self.back_btn.clicked.connect(self._go_back)
         layout.addWidget(self.back_btn)
         
         # Forward button
-        self.forward_btn = QPushButton("→")
+        self.forward_btn = QPushButton(">")
         self.forward_btn.setFixedSize(32, 32)
         self.forward_btn.setToolTip("Forward")
         self.forward_btn.clicked.connect(self._go_forward)
         layout.addWidget(self.forward_btn)
         
         # Refresh button
-        self.refresh_btn = QPushButton("🔄")
+        self.refresh_btn = QPushButton("R")
         self.refresh_btn.setFixedSize(32, 32)
         self.refresh_btn.setToolTip("Refresh")
         self.refresh_btn.clicked.connect(self._refresh)
         layout.addWidget(self.refresh_btn)
         
         # Home button
-        self.home_btn = QPushButton("🏠")
+        self.home_btn = QPushButton("H")
         self.home_btn.setFixedSize(32, 32)
         self.home_btn.setToolTip("Home (HuggingFace)")
         self.home_btn.clicked.connect(self._go_home)
@@ -241,20 +251,20 @@ class EmbeddedBrowser(QWidget):
         layout.addWidget(self.url_bar, 1)
         
         # Quick nav buttons
-        hf_btn = QPushButton("🤗")
-        hf_btn.setFixedSize(32, 32)
+        hf_btn = QPushButton("HF")
+        hf_btn.setFixedSize(40, 32)
         hf_btn.setToolTip("HuggingFace Models")
         hf_btn.clicked.connect(lambda: self.navigate_to(PLATFORMS["huggingface"]["models_url"]))
         layout.addWidget(hf_btn)
         
-        ms_btn = QPushButton("📦")
-        ms_btn.setFixedSize(32, 32)
+        ms_btn = QPushButton("MS")
+        ms_btn.setFixedSize(40, 32)
         ms_btn.setToolTip("ModelScope Models")
         ms_btn.clicked.connect(lambda: self.navigate_to(PLATFORMS["modelscope"]["models_url"]))
         layout.addWidget(ms_btn)
         
         # Download current model button
-        self.download_btn = QPushButton("⬇️ Download")
+        self.download_btn = QPushButton("Download")
         self.download_btn.setToolTip("Download this model")
         self.download_btn.clicked.connect(self._download_current)
         self.download_btn.hide()  # Show only on model pages
