@@ -100,7 +100,8 @@ class ComfyUITab(QWidget):
     def _setup_ui(self) -> None:
         """Set up the UI components."""
         layout = QVBoxLayout(self)
-        layout.setSpacing(12)
+        layout.setContentsMargins(20, 20, 20, 20)
+        layout.setSpacing(16)
         
         # ComfyUI Root section
         layout.addWidget(self._create_comfyui_root_section())
@@ -180,7 +181,7 @@ class ComfyUITab(QWidget):
         layout.addWidget(self._create_separator())
         
         self.info_missing = QLabel("Missing: -")
-        self.info_missing.setStyleSheet("color: #f38ba8;")
+        self.info_missing.setStyleSheet("color: #f85149;")
         layout.addWidget(self.info_missing)
         
         layout.addStretch()

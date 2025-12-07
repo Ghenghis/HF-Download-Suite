@@ -96,21 +96,7 @@ class SettingsTab(QWidget):
     def _create_section(self, title: str, icon: str = "") -> QGroupBox:
         """Create a settings section group box."""
         group = QGroupBox(f"{icon} {title}" if icon else title)
-        group.setStyleSheet("""
-            QGroupBox {
-                font-weight: bold;
-                font-size: 14px;
-                border: 1px solid #45475a;
-                border-radius: 8px;
-                margin-top: 12px;
-                padding: 16px;
-            }
-            QGroupBox::title {
-                subcontrol-origin: margin;
-                left: 12px;
-                padding: 0 8px;
-            }
-        """)
+        # Use theme styling - no inline styles needed
         return group
     
     def _create_auth_section(self) -> QGroupBox:

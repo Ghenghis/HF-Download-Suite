@@ -137,37 +137,54 @@ class MainWindow(QMainWindow):
         return widget
     
     def _setup_status_bar(self) -> None:
-        """Set up the status bar."""
+        """Set up the status bar with proper spacing."""
         self.status_bar = QStatusBar()
+        self.status_bar.setContentsMargins(8, 4, 8, 4)
         self.setStatusBar(self.status_bar)
+        
+        # Create a container widget for left-side items with proper spacing
+        left_container = QWidget()
+        left_layout = QHBoxLayout(left_container)
+        left_layout.setContentsMargins(0, 0, 0, 0)
+        left_layout.setSpacing(16)  # Good spacing between items
         
         # Active downloads indicator
         self.active_label = QLabel("⬇️ 0 active")
-        self.status_bar.addWidget(self.active_label)
+        self.active_label.setStyleSheet("padding: 0 8px;")
+        left_layout.addWidget(self.active_label)
         
         # Separator
         sep1 = QFrame()
         sep1.setFrameShape(QFrame.Shape.VLine)
-        self.status_bar.addWidget(sep1)
+        sep1.setStyleSheet("background-color: #30363d; max-width: 1px;")
+        sep1.setFixedWidth(1)
+        left_layout.addWidget(sep1)
         
         # Speed indicator
         self.speed_label = QLabel("📊 0 B/s")
-        self.status_bar.addWidget(self.speed_label)
+        self.speed_label.setStyleSheet("padding: 0 8px;")
+        left_layout.addWidget(self.speed_label)
         
         # Separator
         sep2 = QFrame()
         sep2.setFrameShape(QFrame.Shape.VLine)
-        self.status_bar.addWidget(sep2)
+        sep2.setStyleSheet("background-color: #30363d; max-width: 1px;")
+        sep2.setFixedWidth(1)
+        left_layout.addWidget(sep2)
         
         # Queue indicator
         self.queue_label = QLabel("📋 0 queued")
-        self.status_bar.addWidget(self.queue_label)
+        self.queue_label.setStyleSheet("padding: 0 8px;")
+        left_layout.addWidget(self.queue_label)
+        
+        self.status_bar.addWidget(left_container)
         
         # Stretch
         self.status_bar.addWidget(QWidget(), 1)
         
-        # Status
+        # Status on right side
         self.status_text = QLabel("✅ Ready")
+        self.status_text.setStyleSheet("padding: 0 8px; color: #3fb950;")
         self.status_bar.addPermanentWidget(self.status_text)
     
     def _setup_connections(self) -> None:

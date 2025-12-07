@@ -22,13 +22,16 @@ from PyQt6.QtCore import Qt, QUrl, pyqtSignal, QTimer
 from PyQt6.QtGui import QAction
 
 # Try to import WebEngine - it's an optional dependency
+# Catch both ImportError and OSError (DLL load failures)
 try:
     from PyQt6.QtWebEngineWidgets import QWebEngineView
     from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineProfile
     WEBENGINE_AVAILABLE = True
-except ImportError:
+except (ImportError, OSError) as e:
     WEBENGINE_AVAILABLE = False
     QWebEngineView = None
+    logger = __import__('logging').getLogger(__name__)
+    logger.warning(f"WebEngine not available: {e}")
 
 from ...core import EventBus, Events
 from ...core.constants import PLATFORMS
@@ -197,10 +200,11 @@ class EmbeddedBrowser(QWidget):
     def _create_toolbar(self) -> QFrame:
         """Create the navigation toolbar."""
         toolbar = QFrame()
-        toolbar.setObjectName("card")
+        toolbar.setObjectName("toolbar")
+        toolbar.setStyleSheet("background-color: #161b22; border-bottom: 1px solid #30363d;")
         layout = QHBoxLayout(toolbar)
-        layout.setContentsMargins(8, 4, 8, 4)
-        layout.setSpacing(4)
+        layout.setContentsMargins(12, 8, 12, 8)
+        layout.setSpacing(8)
         
         # Back button
         self.back_btn = QPushButton("←")
