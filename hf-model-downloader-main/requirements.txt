@@ -1,0 +1,8 @@
+huggingface_hub
+PyQt6
+tqdm
+requests
+pyinstaller
+Pillow
+psutil>=5.9.0
+modelscope

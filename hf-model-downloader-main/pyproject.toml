@@ -1,0 +1,59 @@
+[project]
+name = "hf-model-downloader"
+version = "0.6.1"
+description = "A cross-platform GUI application for easily downloading Hugging Face models without requiring technical knowledge or setup."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "huggingface-hub>=0.34.4",
+    "modelscope>=1.29.0",
+    "numpy>=1.24.0",
+    "addict>=2.4.0",
+    "pillow>=11.3.0",
+    "psutil>=5.9.0",
+    "pyinstaller>=6.15.0",
+    "pyqt6>=6.9.1",
+    "requests>=2.32.4",
+    "tqdm>=4.67.1",
+    "datasets>=3.0.0,<=3.6.0",
+]
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+build_command = "echo 'Build handled by separate multi-platform workflow'"
+upload_to_pypi = false
+upload_to_repository = false
+upload_to_release = false
+hvcs = "github"
+commit_message = "chore(release): v{version}"
+major_on_zero = false
+allow_zero_version = true
+
+[tool.semantic_release.commit_parser_options]
+allowed_tags = ["feat", "fix", "docs", "style", "refactor", "perf", "test", "chore", "ci", "build"]
+minor_tags = ["feat"]
+patch_tags = ["fix", "perf", "docs", "style", "refactor", "test", "chore", "ci", "build"]
+
+[tool.semantic_release.remote.token]
+env = "GH_TOKEN"
+
+[tool.semantic_release.changelog]
+template_dir = "templates"
+
+[tool.semantic_release.changelog.default_templates]
+changelog_file = "CHANGELOG.md"
+
+[tool.semantic_release.branches.main]
+match = "main"
+prerelease = false
+
+[tool.semantic_release.publish]
+dist_glob_patterns = ["dist/*.dmg"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "python-semantic-release",
+    "ruff",
+    "dmgbuild",
+]

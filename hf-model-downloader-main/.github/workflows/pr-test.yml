@@ -1,0 +1,56 @@
+name: PR Test Build
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-build-macos:
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.13']
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: make install
+    
+    - name: Test build application
+      run: make build
+    
+    - name: List build directory
+      run: ls -R dist/
+
+  test-build-windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: ['3.13']
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Setup make for Windows
+      run: choco install make
+    
+    - name: Install dependencies
+      run: make install
+    
+    - name: Test build application
+      run: make build
+    
+    - name: List build directory
+      run: dir dist

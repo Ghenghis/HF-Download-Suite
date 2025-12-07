@@ -1,0 +1,38 @@
+# HF Download Suite v2 - Requirements
+# Fully standalone application with no external browser dependencies
+
+# Core UI
+PyQt6>=6.6.0
+PyQt6-Qt6>=6.6.0
+
+# Embedded Browser (REQUIRED for fully integrated app - no external redirects)
+PyQt6-WebEngine>=6.6.0
+PyQt6-WebEngine-Qt6>=6.6.0
+
+# Data/Config
+pydantic>=2.5.0
+sqlalchemy>=2.0.0
+
+# Download
+huggingface_hub>=0.20.0
+tqdm>=4.66.0
+requests>=2.31.0
+aiohttp>=3.9.0
+
+# Image processing (for PNG workflow extraction)
+Pillow>=10.0.0
+
+# Optional platforms
+modelscope>=1.11.0
+
+# Utilities
+python-dotenv>=1.0.0
+
+# Development
+pytest>=7.4.0
+pytest-qt>=4.3.0
+pytest-cov>=4.1.0
+ruff>=0.1.0
+
+# Packaging
+pyinstaller>=6.3.0

@@ -1,0 +1,287 @@
+# CHANGELOG
+
+<!-- version list -->
+
+## v0.6.1 (2025-08-22)
+
+### Bug Fixes
+
+- **website**: Add platform-specific download button for latest release
+  ([`807ee49`](https://github.com/samzong/hf-model-downloader/commit/807ee49e0b2d7f3300962499327026be7bc96c1e))
+
+
+## v0.6.0 (2025-08-22)
+
+### Features
+
+- **readme**: Add smart download button with OS detection and links
+  ([`475e894`](https://github.com/samzong/hf-model-downloader/commit/475e894f973474a8ff246807af6bb5a848c2cc54))
+
+
+## v0.5.5 (2025-08-22)
+
+### Bug Fixes
+
+- **dependencies**: Remove cli extra from huggingface-hub in config and requirements
+  ([`7790e1c`](https://github.com/samzong/hf-model-downloader/commit/7790e1ca594d4e9da6d3d6d77a69572ab1e3623a))
+
+### Documentation
+
+- **build**: Update README with detailed make commands and cleanup release-guide.md removal
+  ([`a46417d`](https://github.com/samzong/hf-model-downloader/commit/a46417d3dbe1cc296b5362fdf432c7f32082f795))
+
+
+## v0.5.4 (2025-08-22)
+
+### Chores
+
+- **downloader**: Update deprecation warnings and messages for unified downloader
+  ([`d0aeb67`](https://github.com/samzong/hf-model-downloader/commit/d0aeb676d3ce7bdbde8aafc0d9909aa8bbea8209))
+
+- **makefile**: Improve python command detection and clean release echoes
+  ([`f6704b4`](https://github.com/samzong/hf-model-downloader/commit/f6704b44739dbe3db4fd5748842b33952566e459))
+
+### Refactoring
+
+- **build**: Clean up build script and improve icon handling comments
+  ([`428aa4e`](https://github.com/samzong/hf-model-downloader/commit/428aa4e3edfb6b74b1f9dd110d8903b9f5d73f95))
+
+- **ci**: Streamline dependency installation and update python version to 3.13 in workflows
+  ([`b2d693b`](https://github.com/samzong/hf-model-downloader/commit/b2d693b437d6f72b8b892610c2427e85101f4ab2))
+
+- **icon-generator**: Remove deprecated icon_generator.py script and all related code
+  ([`d57bfa1`](https://github.com/samzong/hf-model-downloader/commit/d57bfa1d3c94b4816b482a3b81d19a1f8bbfdcac))
+
+- **makefile**: Simplify version detection and improve logging in build tasks
+  ([`9d2b76a`](https://github.com/samzong/hf-model-downloader/commit/9d2b76a4f572ae426e5b68e0dbde482e93f9f3f0))
+
+- **makefile**: Streamline dependency management and add linting targets
+  ([`d7f1237`](https://github.com/samzong/hf-model-downloader/commit/d7f1237933c88f3747f6327dc995d2a25de66e37))
+
+### Testing
+
+- **tests/test_e2e_basic**: Remove trailing comments from model_id arguments
+  ([`3eac90c`](https://github.com/samzong/hf-model-downloader/commit/3eac90c84e0e8b4a54c9d99c05c74bfb7ac9e008))
+
+
+## v0.5.3 (2025-08-21)
+
+### Chores
+
+- Remove uv.lock from version control
+  ([`4d54078`](https://github.com/samzong/hf-model-downloader/commit/4d540786f173d79e7797e77a45a9bb5a1ce12dc0))
+
+- **dependencies**: Bump hf-model-downloader version to 0.5.2
+  ([`a0a0245`](https://github.com/samzong/hf-model-downloader/commit/a0a0245dc704802f3ec820d7e174c9b717ad9136))
+
+### Documentation
+
+- **readme**: Update description and usage instructions for clarity and accuracy
+  ([`4962c25`](https://github.com/samzong/hf-model-downloader/commit/4962c25422d4c44f91b40dfbb04d470ec77367d4))
+
+- **readme**: Update screenshot image to reflect UI changes
+  ([`dfdc440`](https://github.com/samzong/hf-model-downloader/commit/dfdc440f99860e5dd4a58c20641e71465ec0a005))
+
+### Refactoring
+
+- Clean up code and improve comments across multiple files
+  ([`0c8540a`](https://github.com/samzong/hf-model-downloader/commit/0c8540a1e42ea288c54fd621020a60e10dac4553))
+
+
+## v0.5.2 (2025-08-20)
+
+### Bug Fixes
+
+- **resource**: Add utility to load asset paths in development and packaged app
+  ([`c5d7b26`](https://github.com/samzong/hf-model-downloader/commit/c5d7b2644d491340cf7bc9bc24b7e095d3a81a50))
+
+
+## v0.5.1 (2025-08-20)
+
+### Chores
+
+- **dependencies**: Update hf-model-downloader version to 0.5.0 in uv.lock
+  ([`2228db0`](https://github.com/samzong/hf-model-downloader/commit/2228db04e622f398895d4738cfa1f03ec8a1471a))
+
+- **lint**: Add initial Ruff configuration file with selected rules and formatting
+  ([`bff47ad`](https://github.com/samzong/hf-model-downloader/commit/bff47aded0fc4d8139eb24b90a5414ceb28fc205))
+
+### Code Style
+
+- **ui**: Reorganize imports and improve code formatting in MainWindow class
+  ([`bb158e3`](https://github.com/samzong/hf-model-downloader/commit/bb158e34e36a8aecf8664b192b153a8da2fa8cd1))
+
+### Refactoring
+
+- **build**: Improve build.py formatting and architecture detection logic
+  ([`efaeb53`](https://github.com/samzong/hf-model-downloader/commit/efaeb530c569caea7f5197288677854a67f9f23e))
+
+- **downloader**: Update deprecated classes and functions to use UnifiedDownloadWorker and
+  unified_download_model
+  ([`85e420f`](https://github.com/samzong/hf-model-downloader/commit/85e420f2db954912457f7423381dc17520a311b6))
+
+- **icon_generator**: Reorganize imports and improve image processing functions readability
+  ([`4de6685`](https://github.com/samzong/hf-model-downloader/commit/4de6685e0a4aba8846acf864c4e9f6a557c78086))
+
+- **main**: Improve multiprocessing setup and env handling for PyQt app
+  ([`1018c68`](https://github.com/samzong/hf-model-downloader/commit/1018c68d58532a20d4ed313df406d781c5cc8aca))
+
+### Testing
+
+- **tests**: Add basic end-to-end tests for huggingface and modelscope downloads with PyQt event
+  loop
+  ([`7975446`](https://github.com/samzong/hf-model-downloader/commit/797544657ad8632874bfe01f9e95b3ce7a1ed8f1))
+
+
+## v0.5.0 (2025-08-20)
+
+### Features
+
+- **downloader**: Add dataset support using MsDataset in ModelScope downloader
+  ([`a5ff19f`](https://github.com/samzong/hf-model-downloader/commit/a5ff19fd93d5ad9e31ecbbecf163cb77f6e37178))
+
+### Refactoring
+
+- **download**: Improve ModelScope download with authentication and error handling
+  ([`9f0fc6b`](https://github.com/samzong/hf-model-downloader/commit/9f0fc6b921146db43fd6e8b176577ed4d19e0fd2))
+
+- **ui, unified_downloader**: Enhance download worker cleanup and thread safety
+  ([`b1c6331`](https://github.com/samzong/hf-model-downloader/commit/b1c6331472b24b1ab3830678532205ccaaf42296))
+
+
+## v0.4.0 (2025-08-20)
+
+### Features
+
+- **downloader**: Add backward compatibility wrapper and unify downloaders
+  ([`953a329`](https://github.com/samzong/hf-model-downloader/commit/953a3290cd8fe24d1b2eecec00decfa4e9ffd1a1))
+
+
+## v0.3.3 (2025-08-19)
+
+### Refactoring
+
+- **build**: Replace Windows installer with zip package and update workflow upload script
+  ([`a7fdccd`](https://github.com/samzong/hf-model-downloader/commit/a7fdccdaa0cd75b3ab11e7dfd1b94f4662048e9e))
+
+
+## v0.3.2 (2025-08-19)
+
+### Chores
+
+- **ci**: Prioritize GH_PAT secret and add debug checks in workflows and scripts
+  ([`714294a`](https://github.com/samzong/hf-model-downloader/commit/714294a8821f60d9c6c20e96b7a469da23a25521))
+
+
+## v0.3.1 (2025-08-19)
+
+### Chores
+
+- **workflows**: Update token from GH_TOKEN to GH_PAT for release authentication
+  ([`809ed88`](https://github.com/samzong/hf-model-downloader/commit/809ed8883b1efca2941d8bdc5ef64d5e2168199d))
+
+
+## v0.3.0 (2025-08-19)
+
+### Features
+
+- Improve workflow trigger mechanism
+  ([`3df93a1`](https://github.com/samzong/hf-model-downloader/commit/3df93a1bf720e5063d8d7bf2e1dda1fec36a6a5d))
+
+
+## v0.2.0 (2025-08-19)
+
+### Bug Fixes
+
+- **makefile**: Correct dmg filename and export VERSION for homebrew update script
+  ([`f0e94f7`](https://github.com/samzong/hf-model-downloader/commit/f0e94f77bfe0e149261e6c0b598934b9704bcc59))
+
+### Features
+
+- **ci**: Add multi-platform build and release workflows with macOS and Windows support
+  ([`e9f560f`](https://github.com/samzong/hf-model-downloader/commit/e9f560f3516c3525a70d39c525458d1d19d1ec6d))
+
+
+## v0.1.1 (2025-08-19)
+
+### Chores
+
+- **ci**: Add debug info to release workflow and improve homebrew update script handling
+  ([`8d35874`](https://github.com/samzong/hf-model-downloader/commit/8d35874a986c9a3b823a0fbdd8dd7231f614fea8))
+
+
+## v0.1.0 (2025-08-18)
+
+### Bug Fixes
+
+- **build**: Correct Makefile syntax errors in define blocks
+  ([`139886f`](https://github.com/samzong/hf-model-downloader/commit/139886f7093d2637deec281fa6c00f602f46f9a4))
+
+### Build System
+
+- **release**: Intergrate python-semantic-release
+  ([`f64b7ef`](https://github.com/samzong/hf-model-downloader/commit/f64b7efcd1a52bfd5de303cbb29064602a58d063))
+
+### Features
+
+- **homebrew**: Add modular script and Makefile check for Homebrew Cask update
+  ([`2f9c902`](https://github.com/samzong/hf-model-downloader/commit/2f9c902080686e01d5155d0a9db2f2bb77f99362))
+
+### Refactoring
+
+- **ci**: Enhance release workflow to output version and release status
+  ([`7889dcf`](https://github.com/samzong/hf-model-downloader/commit/7889dcfdcf9f20b5cc97ca84e841330b75a23a51))
+
+- **makefile**: Improve maintainability with enhanced logging, validations, and organized variables
+  ([`d6c4372`](https://github.com/samzong/hf-model-downloader/commit/d6c43722647c0d2f4c51310a927bd2ccb9118928))
+
+
+## v0.0.7 (2025-08-18)
+
+### Documentation
+
+- **license**: Add initial MIT license file
+  ([`4cac811`](https://github.com/samzong/hf-model-downloader/commit/4cac811b63f014ea47eb40bcb4d38872ea164a9d))
+
+### Features
+
+- **python**: Add environment config, python 3.13, and dependencies for HF model downloader
+  ([`c8d7975`](https://github.com/samzong/hf-model-downloader/commit/c8d79752f7b851002ecb3a55d3f3042ec3a4382e))
+
+### Refactoring
+
+- **downloader**: Add LoggerManager to unify log handler management and prevent leaks
+  ([`ca6ac84`](https://github.com/samzong/hf-model-downloader/commit/ca6ac841ed7e2fe0095eefdb6775766192f09e5a))
+
+- **Makefile**: Update SHA256 handling for Homebrew Cask to use new on_arm/on_intel format
+  ([`f7d8cc4`](https://github.com/samzong/hf-model-downloader/commit/f7d8cc448b581457d993492a362b976bf560e270))
+
+
+## v0.0.6 (2025-06-11)
+
+
+## v0.0.5 (2025-06-11)
+
+### Bug Fixes
+
+- Use architecture-specific executable name for Windows builds
+  ([`25cdcc8`](https://github.com/samzong/hf-model-downloader/commit/25cdcc8aef10a7e2514cba6ced82347845fe3b3b))
+
+### Documentation
+
+- **claimed**: Add CLAUDE.md with development and architecture guidance
+  ([`0e9a596`](https://github.com/samzong/hf-model-downloader/commit/0e9a5964763203c0c0793a79e711f1f75c7e34a8))
+
+- **readme**: Add DeepWiki badge link to project header
+  ([`a047f5e`](https://github.com/samzong/hf-model-downloader/commit/a047f5eff556c299f8203b5f6c5fea8f65b85b60))
+
+
+## v0.0.4 (2025-03-05)
+
+
+## v0.0.2 (2025-01-16)
+
+
+## v0.0.1 (2025-01-15)
+
+- Initial Release
